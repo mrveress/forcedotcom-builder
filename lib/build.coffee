@@ -6,9 +6,10 @@ remote = require "remote"
 
 utils = require './utils'
 BuildView = require './build-view'
-SfCreatingDialog = require './sf-creating-dialog'
-ProjectDialog = require './project-dialog'
-CustomLabelDialog = require './custom-label-dialog'
+SfCreatingDialog = require './dialogs/sf-creating-dialog'
+ProjectDialog = require './dialogs/project-dialog'
+CustomLabelDialog = require './dialogs/custom-label-dialog'
+SettingsModule = require './modules/settings'
 
 module.exports =
   config:
@@ -17,6 +18,9 @@ module.exports =
 
   activate: (state) ->
     @buildView = new BuildView()
+
+    @settingsModule = new SettingsModule(this)
+
 
     atom.commands.add 'atom-workspace', 'force.com:generate-project', => @generateProject()
     atom.commands.add 'atom-workspace', 'force.com:go-to-wiki', => @goToWiki()

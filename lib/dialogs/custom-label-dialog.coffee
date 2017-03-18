@@ -1,4 +1,4 @@
-CustomLabelDialogView = require './custom-label-dialog-view'
+CustomLabelDialogView = require '../views/custom-label-dialog-view'
 
 module.exports =
   class CustomLabelDialog

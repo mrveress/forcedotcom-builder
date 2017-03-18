@@ -1,4 +1,4 @@
-ProjectDialogView = require './project-dialog-view'
+ProjectDialogView = require '../views/project-dialog-view'
 
 module.exports =
   class ProjectDialog
@@ -31,4 +31,3 @@ module.exports =
       if @callback
         @callback.apply(@builder, @callbackArgs)
       delete this
-

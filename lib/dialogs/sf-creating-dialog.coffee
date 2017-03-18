@@ -1,4 +1,4 @@
-SfCreatingDialogView = require './sf-creating-dialog-view'
+SfCreatingDialogView = require '../views/sf-creating-dialog-view'
 
 module.exports =
   class SfCreatingDialog
