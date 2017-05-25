@@ -1,7 +1,7 @@
 {
-  "name": "forcedotcom-builder",
+  "name": "sf-tools",
   "main": "./lib/build",
-  "version": "0.5.4",
+  "version": "0.4.1",
   "private": true,
   "description": "Work on your Force.com projects, straight from Atom",
   "activationCommands": {
@@ -28,7 +28,7 @@
       "force.com:create-custom-label-project"
     ]
   },
-  "repository": "https://github.com/jonathanrico/forcedotcom-builder",
+  "repository": "https://github.com/mrveress/sf-tools",
   "license": "MIT",
   "engines": {
     "atom": ">=0.50.0"
