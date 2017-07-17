@@ -5,6 +5,7 @@ pathModule = require 'path'
 remote = require "remote"
 
 utils = require './utils'
+Builder = require './builder/builder.js'
 BuildView = require './build-view'
 SfCreatingDialog = require './sf-creating-dialog'
 ProjectDialog = require './project-dialog'
@@ -17,6 +18,7 @@ module.exports =
 
   activate: (state) ->
     @buildView = new BuildView()
+    @builder = new Builder(this)
 
     atom.commands.add 'atom-workspace', 'force.com:generate-project', => @generateProject()
     atom.commands.add 'atom-workspace', 'force.com:go-to-wiki', => @goToWiki()
@@ -45,6 +47,10 @@ module.exports =
     atom.commands.add 'atom-workspace', 'force.com:create-custom-label-project', => @getProjectPath("treeview-project", @createCustomLabelDialog, ["project"])
 
     atom.commands.add 'atom-workspace', 'force.com:abort', => @stop()
+
+    #New test methods
+
+    atom.commands.add 'atom-workspace', 'sf-tools:retrieve-current-file', => @getProjectPath("editor", @builder.retrieveSingleFile, null)
 
   getProjectPath: (projectSelector, callback, callbackArgs) ->
     root = null

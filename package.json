@@ -25,7 +25,8 @@
       "force.com:new-vf-page",
       "force.com:new-vf-component",
       "force.com:create-custom-label-editor",
-      "force.com:create-custom-label-project"
+      "force.com:create-custom-label-project",
+      "sf-tools:retrieve-current-file"
     ]
   },
   "repository": "https://github.com/mrveress/sf-tools",
@@ -36,6 +37,7 @@
   "dependencies": {
     "atom-message-panel": ">=1.0.0",
     "atom-space-pen-views": "~2.2.0",
-    "space-pen": "*"
+    "space-pen": "*",
+    "xml2js" : "*"
   }
 }
