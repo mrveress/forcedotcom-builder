@@ -1,0 +1,9 @@
+'scopeName': 'xmlmeta.sftools'
+'fileTypes': [
+  'svg'
+  'object'
+  'labels'
+]
+'patterns': [
+  { "include" : "text.xml" }
+]
