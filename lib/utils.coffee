@@ -1,5 +1,6 @@
 child_process = require 'child_process'
 fs = require 'fs'
+pathModule = require 'path'
 
 module.exports =
   isWin: () ->
@@ -117,6 +118,17 @@ module.exports =
     @writeSrc itemParams
 
 #-----------
+
+  createFolderRecursive: (path) ->
+    targetDir = @getPlatformPath(path)
+    sep = pathModule.sep;
+    initDir = if pathModule.isAbsolute targetDir then sep else '';
+    targetDir.split(sep).reduce (parentDir, childDir) ->
+      curDir = pathModule.resolve(parentDir, childDir);
+      if !fs.existsSync(curDir)
+        fs.mkdirSync(curDir);
+      return curDir;
+    , initDir;
 
   deleteFolderRecursive: (path) ->
     if fs.existsSync(path)
