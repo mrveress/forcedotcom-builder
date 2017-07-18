@@ -1,0 +1,8 @@
+'scopeName': 'lightning.sf'
+'fileTypes': [
+  'cmp'
+  'design'
+]
+'patterns': [
+  { "include" : "text.xml" }
+]
