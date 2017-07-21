@@ -51,10 +51,11 @@ module.exports = class Builder
             retrieveZip = new Zip(retrieveZip);
             retrieveZip.deleteFile 'package.xml'
             retrieveZip.extractAllTo(projectPath, true)
-          conn.metadata.retrieve(
+          retrieveResult = conn.metadata.retrieve(
             apiVersion: '39.0'
             singlePackage: true
-            unpackaged: types: [params]).stream().pipe(wS)
+            unpackaged: types: [params])
+          retrieveInterval = setInterval((() -> selfModule.builder.checkRetrieve retrieveResult, retrieveInterval, retrieveZip, projectPath, selfModule), props.metadataConfiguration.pollInterval)
         else
           selfModule.buildView.buildUnsupported()
 
@@ -62,3 +63,17 @@ module.exports = class Builder
     propFile = utils.getPlatformPath(root + '/.sftools/project.json')
     result = JSON.parse(fs.readFileSync(propFile, 'utf8'))
     result
+
+  checkRetrieve: (retrieveResult, retrieveInterval, retrieveZip, projectPath, selfModule) ->
+    retrieveResult.check((err, result)->
+      console.log err, result
+      if result.done
+        clearInterval retrieveInterval
+        wS = fs.createWriteStream retrieveZip
+        wS.on 'finish', =>
+          retrieveZip = new Zip(retrieveZip);
+          retrieveZip.deleteFile 'package.xml'
+          retrieveZip.extractAllTo(projectPath, true)
+        retrieveResult.stream().pipe(wS)
+        console.log "Complete"
+    )
