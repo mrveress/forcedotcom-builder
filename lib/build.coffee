@@ -5,7 +5,7 @@ pathModule = require 'path'
 remote = require "remote"
 
 utils = require './utils'
-Builder = require './builder/builder.js'
+Builder = require './builder/builder'
 BuildView = require './build-view'
 SfCreatingDialog = require './sf-creating-dialog'
 ProjectDialog = require './project-dialog'
