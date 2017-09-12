@@ -23,6 +23,7 @@
             'submenu': [
                 { 'label': 'Deploy File', 'command': 'force.com:deploy-file-treeview' }
                 { 'label': 'Retrieve File', 'command': 'force.com:retrieve-file-treeview' }
+                { 'label': 'Order Content for Git', 'command': 'sf-tools:git-order-treeview' }
             ]
         }
         { 'type': 'separator' }
@@ -33,6 +34,8 @@
             'submenu': [
                 { 'label': 'Deploy Files', 'command': 'force.com:deploy-selected-files' }
                 { 'label': 'Retrieve Files', 'command': 'force.com:retrieve-selected-files' }
+                { 'label': 'Order Content for Git', 'command': 'sf-tools:git-order-treeview' }
+                
             ]
         }
         { 'type': 'separator' }
@@ -61,5 +64,13 @@
     'atom-text-editor[data-grammar~="apex"], atom-text-editor[data-grammar~="visualforce"]': [
       { 'type': 'separator' }
       { 'label': 'Create Custom Label', 'command': 'force.com:create-custom-label-editor' }
+      { 'type': 'separator' }
+    ]
+    'atom-pane[data-active-item-name$=".permissionset"] atom-text-editor[data-grammar~="xml"], 
+    atom-pane[data-active-item-name$=".labels"] atom-text-editor[data-grammar~="xml"], 
+    atom-pane[data-active-item-name$=".object"] atom-text-editor[data-grammar~="xml"],
+    atom-pane[data-active-item-name$=".objectTranslation"] atom-text-editor[data-grammar~="xml"]' : [
+      { 'type': 'separator' }
+      { 'label': 'Order content for Git', 'command': 'sf-tools:git-order' }
       { 'type': 'separator' }
     ]

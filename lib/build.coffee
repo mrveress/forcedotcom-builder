@@ -9,6 +9,7 @@ BuildView = require './build-view'
 SfCreatingDialog = require './sf-creating-dialog'
 ProjectDialog = require './project-dialog'
 CustomLabelDialog = require './custom-label-dialog'
+GitOrder = require './ordering/gitorder.js'
 
 module.exports =
   config:
@@ -45,6 +46,9 @@ module.exports =
     atom.commands.add 'atom-workspace', 'force.com:create-custom-label-project', => @getProjectPath("treeview-project", @createCustomLabelDialog, ["project"])
 
     atom.commands.add 'atom-workspace', 'force.com:abort', => @stop()
+
+    atom.commands.add 'atom-workspace', "sf-tools:git-order", => @getProjectPath("editor", @gitOrder, null)
+    atom.commands.add 'atom-workspace', "sf-tools:git-order-treeview", => @getProjectPath("treeview-multiple", @gitOrderTreeView, null)
 
   getProjectPath: (projectSelector, callback, callbackArgs) ->
     root = null
@@ -334,3 +338,15 @@ module.exports =
     utils.insertCustomLabel customLabelDialog, @root, customLabelDialog.editor
     if callback
       callback()
+
+  gitOrder: () ->
+    GitOrder.order(atom.workspace.getActiveTextEditor());
+
+  gitOrderTreeView: () ->
+    treeViewInstance = @getTreeView()
+    if (treeViewInstance.selectedPaths()?.length > 0)
+      params = {}
+      projectPath = utils.getSrcPath(@root)
+      paths = treeViewInstance.selectedPaths()
+      GitOrder.order(paths);
+        

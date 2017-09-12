@@ -8,6 +8,9 @@ module.exports =
   getPlatformPath: (str) ->
     if @isWin() then str.replace /\//g, '\\' else str
 
+  getGitPath: (str) ->
+    if @isWin() then str.replace /\\/g, '/' else str
+
   getSrcPath: (root) ->
     root + @getPlatformPath('/src/')
 
@@ -231,3 +234,6 @@ module.exports =
                 utils.writeBeforeLastOccurance(tPath, '</Translations>', utils.getLabelTranslationMeta(cl), null, null)
               )
     fs.existsSync labelsPath
+
+  htmlEncode: (s) ->
+    s.replace(/"/g, '&quot;').replace(/'/g, '&apos;');
