@@ -1,12 +1,13 @@
-forcedotcom-builder
+sf-tools
 ===================
 
-Force.com builder for atom.io
+This is fork of [**forcedotcom-builder**](https://github.com/jonathanrico/forcedotcom-builder)
 
+Force.com builder for atom.io
 This builder provides a simple wrapper for the ANT Migration tool provided by Salesforce, allows you to run your build.xml ant targets.  
 
 
-![forcedotcom-builder](screenshots/overview.gif "forcedotcom-builder")
+![sf-tools](screenshots/overview.gif "sf-tools")
 
 ## Features:
 

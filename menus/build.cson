@@ -12,32 +12,35 @@
   }
 ]
 'context-menu':
-    '.tree-view.full-menu.list-tree': [
+    '.tree-view.full-menu.list-tree, .tree-view .full-menu.list-tree': [
       { 'type': 'separator' }
       { 'label': 'Generate Force.com Project', 'command': 'force.com:generate-project' }
       { 'type': 'separator' }
     ]
-    '.tree-view.full-menu [is="tree-view-file"]': [
+    '.tree-view.full-menu [is="tree-view-file"], .tree-view .full-menu [is="tree-view-file"]': [
         {
             'label': 'Force.com Builder'
             'submenu': [
                 { 'label': 'Deploy File', 'command': 'force.com:deploy-file-treeview' }
                 { 'label': 'Retrieve File', 'command': 'force.com:retrieve-file-treeview' }
+                { 'label': 'Order Content for Git', 'command': 'sf-tools:git-order-treeview' }
             ]
         }
         { 'type': 'separator' }
     ]
-    '.tree-view.multi-select': [
+    '.tree-view.multi-select, .tree-view .multi-select': [
         {
             'label': 'Force.com Builder'
             'submenu': [
                 { 'label': 'Deploy Files', 'command': 'force.com:deploy-selected-files' }
                 { 'label': 'Retrieve Files', 'command': 'force.com:retrieve-selected-files' }
+                { 'label': 'Order Content for Git', 'command': 'sf-tools:git-order-treeview' }
+                
             ]
         }
         { 'type': 'separator' }
     ]
-    '.tree-view.full-menu .directory.project-root>.list-item': [
+    '.tree-view.full-menu .directory.project-root>.list-item, .tree-view .full-menu .directory.project-root>.list-item': [
         {
             'label': 'Force.com Builder'
             'submenu': [
@@ -63,5 +66,13 @@
     'atom-text-editor[data-grammar~="apex"], atom-text-editor[data-grammar~="visualforce"]': [
       { 'type': 'separator' }
       { 'label': 'Create Custom Label', 'command': 'force.com:create-custom-label-editor' }
+      { 'type': 'separator' }
+    ]
+    'atom-pane[data-active-item-name$=".permissionset"] atom-text-editor[data-grammar~="xml"], 
+    atom-pane[data-active-item-name$=".labels"] atom-text-editor[data-grammar~="xml"], 
+    atom-pane[data-active-item-name$=".object"] atom-text-editor[data-grammar~="xml"],
+    atom-pane[data-active-item-name$=".objectTranslation"] atom-text-editor[data-grammar~="xml"]' : [
+      { 'type': 'separator' }
+      { 'label': 'Order content for Git', 'command': 'sf-tools:git-order' }
       { 'type': 'separator' }
     ]

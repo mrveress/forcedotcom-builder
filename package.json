@@ -1,7 +1,7 @@
 {
-  "name": "forcedotcom-builder",
+  "name": "sf-tools",
   "main": "./lib/build",
-  "version": "0.5.4",
+  "version": "1.0.2-0",
   "private": true,
   "description": "Work on your Force.com projects, straight from Atom",
   "activationCommands": {
@@ -27,9 +27,11 @@
       "force.com:create-custom-label-editor",
       "force.com:create-custom-label-project",
       "force.com:credentials-management"
+      "sf-tools:git-order",
+      "sf-tools:git-order-treeview"
     ]
   },
-  "repository": "https://github.com/jonathanrico/forcedotcom-builder",
+  "repository": "https://github.com/mrveress/sf-tools",
   "license": "MIT",
   "engines": {
     "atom": ">=0.50.0"
@@ -39,6 +41,7 @@
     "atom-space-pen-views": "~2.2.0",
     "space-pen": "*",
     "etch": "*",
+    "xml2js": "*"
     "fs-plus": "*"
   }
 }
