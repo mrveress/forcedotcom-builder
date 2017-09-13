@@ -1,38 +1,29 @@
-etch = require 'etch'
-SettingsMarkdown = require './settings-view.markdown'
+Vue = require('vue')
 
-module.exports =
-class SettingsView
+SettingsViewExtend = Vue.extend({
+  template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+  data: ->
+    {
+      firstName: 'Walter'
+      lastName: 'White'
+      alias: 'Heisenberg'
+    }
+})
 
-  constructor: (root) ->
-    @markdown = new SettingsMarkdown();
-    @root = root
-    @destroyed = false
-    console.log root
-    etch.initialize this
-
-  update: () ->
-    null
-
-  destroy: () ->
-    @destroyed = true
-    #for name in @panelsByName {
-    #  panel = @panelsByName[name]
-    #  panel.destroy()
-    etch.destroy this
-
-  render: () ->
-    @markdown.render()
-
-  showPanel: (panelName, options) ->
-    console.log panelName
-    console.log options
-
-  getTitle: () ->
-    'Settings'
-
-  getIconName: () ->
-    'tools'
-
-  getURI: () ->
-    @root
+module.exports = class SettingsView
+  constructor:(path)->
+    @path = path;
+    
+  getElement: ()->
+    el = document.createElement('span');
+    (new SettingsViewExtend()).$mount(el);
+    el
+ 
+  getTitle: ()->
+    "lol"
+    
+  getIconName: ()->
+    "kek"
+  
+  getURI:()->
+    @path

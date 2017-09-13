@@ -26,9 +26,12 @@
       "force.com:new-vf-component",
       "force.com:create-custom-label-editor",
       "force.com:create-custom-label-project",
-      "sf-tools:credentials-management",
+<<<<<<< HEAD
+      "force.com:credentials-management"
+=======
       "sf-tools:git-order",
       "sf-tools:git-order-treeview"
+>>>>>>> master
     ]
   },
   "repository": "https://github.com/mrveress/sf-tools",
@@ -40,10 +43,11 @@
     "atom-message-panel": ">=1.0.0",
     "atom-space-pen-views": "~2.2.0",
     "space-pen": "*",
+<<<<<<< HEAD
     "etch": "*",
-    "xml2js": "*",
-    "fs-plus": "*",
-    "vue": "1.0.0-csp",
-    "lodash": "*"
+    "fs-plus": "*"
+=======
+    "xml2js": "*"
+>>>>>>> master
   }
 }

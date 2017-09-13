@@ -44,7 +44,7 @@
         {
             'label': 'Force.com Builder'
             'submenu': [
-                { 'label': 'Credentials Manager', 'command': 'force.com:credentials-management' }
+                { 'label': 'Credentials Manager', 'command': 'sf-tools:credentials-management' }
                 { 'type': 'separator' }
                 { 'label': 'Deploy Current Project', 'command': 'force.com:deploy-project' }
                 { 'label': 'Deploy Static Resources', 'command': 'force.com:deploy-static-res' }
