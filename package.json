@@ -42,8 +42,6 @@
     "space-pen": "*",
     "etch": "*",
     "xml2js": "*",
-    "fs-plus": "*",
-    "vue": "1.0.0-csp",
-    "lodash": "*"
+    "fs-plus": "*"
   }
 }
