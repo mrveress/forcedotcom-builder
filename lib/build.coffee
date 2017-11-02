@@ -305,7 +305,7 @@ module.exports =
     }
 
     utils.runProcess(@child, @buildView, 'git init', args, null, @buildView.buildStarted, (exitcode) =>
-      utils.runProcess(@child, @buildView, 'git remote add origin https://github.com/jonathanrico/forcedotcom-project.git', args, null, null, (exitcode) =>
+      utils.runProcess(@child, @buildView, 'git remote add origin https://github.com/mrveress/forcedotcom-project.git', args, null, null, (exitcode) =>
         utils.runProcess(@child, @buildView, 'git pull origin master', args, null, null, (exitcode) =>
           utils.runProcess(@child, @buildView, 'git init', args, () ->
             utils.deleteFolderRecursive utils.getPlatformPath(newProjectPath + '/.git')
