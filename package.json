@@ -1,7 +1,7 @@
 {
   "name": "sf-tools",
   "main": "./lib/build",
-  "version": "1.0.5-0",
+  "version": "1.0.5",
   "private": true,
   "description": "Work on your Force.com projects, straight from Atom",
   "activationCommands": {
