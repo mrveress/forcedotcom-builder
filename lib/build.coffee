@@ -6,10 +6,11 @@ remote = require "remote"
 
 utils = require './utils'
 BuildView = require './build-view'
-SfCreatingDialog = require './sf-creating-dialog'
-ProjectDialog = require './project-dialog'
-CustomLabelDialog = require './custom-label-dialog'
 GitOrder = require './ordering/gitorder.js'
+
+SfCreatingDialog = require './dialogs/sf-creating-dialog'
+ProjectDialog = require './dialogs/project-dialog'
+CustomLabelDialog = require './dialogs/custom-label-dialog'
 
 module.exports =
   config:
@@ -116,6 +117,26 @@ module.exports =
     return cmd
 
   startNewBuild:(buildTarget, params, buildType) ->
+
+    jsonConfigPath = @root + utils.getPlatformPath('/build/sf-tools.properties.json')
+    if fs.existsSync jsonConfigPath
+      sfToolsConfig = JSON.parse(fs.readFileSync(jsonConfigPath, 'utf8'));
+      creds = null
+      for cred in sfToolsConfig.credentials
+        if cred.active
+          creds = cred
+          break
+      newPropsFileContent = []
+      newPropsFileContent.push 'sf.target.username = ' + creds.username
+      newPropsFileContent.push 'sf.target.password = ' + creds.password
+      newPropsFileContent.push 'sf.target.serverurl = ' + creds.serverurl
+      newPropsFileContent.push 'checkOnly = '   + (sfToolsConfig.deploySettings.checkOnly == true ? 'true' : 'false')
+      newPropsFileContent.push 'runAllTests = ' + (sfToolsConfig.deploySettings.runAllTests == true ? 'true' : 'false')
+      console.log newPropsFileContent
+      propsFilePath = @root + utils.getPlatformPath('/build/sfdc-build.properties')
+      utils.writeFile propsFilePath, newPropsFileContent
+
+
     switch buildType
         when 'build'
             cmd = @buildCommand(buildTarget)
@@ -349,4 +370,3 @@ module.exports =
       projectPath = utils.getSrcPath(@root)
       paths = treeViewInstance.selectedPaths()
       GitOrder.order(paths);
-        

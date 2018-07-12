@@ -3,6 +3,12 @@
   'svg'
   'object'
   'labels'
+  'md'
+  'email'
+  'layout'
+  'permissionset'
+  'tab'
+  'objectTranslation'
 ]
 'patterns': [
   { "include" : "text.xml" }
