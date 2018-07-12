@@ -179,6 +179,9 @@ module.exports =
       ,'globalValueSets' : 'GlobalValueSet'
       ,'globalValueSetTranslations' : 'GlobalValueSetTranslation'
       ,'customMetadata' : 'CustomMetadata'
+      ,'contentassets' : 'ContentAsset'
+      ,'mlDomains' : 'MlDomain'
+      ,'bots' : 'Bot'
     }
     result = null
     if folderMapping.hasOwnProperty folderName
