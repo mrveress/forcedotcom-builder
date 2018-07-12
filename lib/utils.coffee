@@ -178,6 +178,7 @@ module.exports =
       ,'email' : 'EmailTemplate'
       ,'globalValueSets' : 'GlobalValueSet'
       ,'globalValueSetTranslations' : 'GlobalValueSetTranslation'
+      ,'customMetadata' : 'CustomMetadata'
     }
     result = null
     if folderMapping.hasOwnProperty folderName
