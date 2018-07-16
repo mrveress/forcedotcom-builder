@@ -43,6 +43,7 @@ module.exports =
     atom.commands.add 'atom-workspace', 'force.com:new-apex-trigger', => @getProjectPath("treeview-project", @creatingDialog, ["Trigger"])
     atom.commands.add 'atom-workspace', 'force.com:new-vf-page', => @getProjectPath("treeview-project", @creatingDialog, ["Page"])
     atom.commands.add 'atom-workspace', 'force.com:new-vf-component', => @getProjectPath("treeview-project", @creatingDialog, ["Component"])
+    atom.commands.add 'atom-workspace', 'sf-tools:new-aura-component', => @getProjectPath("treeview-project", @creatingDialog, ["Lightning Component"])
 
     atom.commands.add 'atom-workspace', 'force.com:create-custom-label-editor', => @getProjectPath("editor", @createCustomLabelDialog, ["editor"])
     atom.commands.add 'atom-workspace', 'force.com:create-custom-label-project', => @getProjectPath("treeview-project", @createCustomLabelDialog, ["project"])

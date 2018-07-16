@@ -26,6 +26,7 @@
       "force.com:new-vf-component",
       "force.com:create-custom-label-editor",
       "force.com:create-custom-label-project",
+      "sf-tools:new-aura-component",
       "sf-tools:git-order",
       "sf-tools:git-order-treeview",
       "sf-tools:copy-credentials",

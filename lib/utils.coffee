@@ -66,6 +66,37 @@ module.exports =
     params.metaFilePath = params.srcFilePath + "-meta.xml"
     params
 
+  createLightningComponent: (sfCreatingDialog, root) ->
+    params = {}
+    params.auraDir = @getSrcPath(root) + @getPlatformPath('aura')
+    params.componentDir = params.auraDir + @getPlatformPath('/' + sfCreatingDialog.apiName)
+    if !fs.existsSync(params.auraDir)
+      fs.mkdirSync(params.auraDir);
+    if !fs.existsSync(params.componentDir)
+      fs.mkdirSync(params.componentDir);
+    params.cmpLines = ['<aura:component>', '</aura:component>']
+    params.cmpPath = params.componentDir + @getPlatformPath('/' + sfCreatingDialog.apiName + '.cmp')
+    params.metaLines = [
+      '<?xml version="1.0" encoding="UTF-8"?>'
+      '<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">'
+      '    <apiVersion>' + sfCreatingDialog.apiVersion + '</apiVersion>'
+      '    <description>' + sfCreatingDialog.apiName + '</description>'
+      '</AuraDefinitionBundle>'
+    ]
+    params.metaPath = params.componentDir + @getPlatformPath('/' + sfCreatingDialog.apiName + '.cmp-meta.xml')
+    params.controllerLines = ['({', '    ' ,'})']
+    params.controllerPath = params.componentDir + @getPlatformPath('/' + sfCreatingDialog.apiName + 'Controller.js')
+    params.helperLines = ['({', '    ' ,'})']
+    params.helperPath = params.componentDir + @getPlatformPath('/' + sfCreatingDialog.apiName + 'Helper.js')
+    params.cssLines = ['.THIS {}']
+    params.cssPath = params.componentDir + @getPlatformPath('/' + sfCreatingDialog.apiName + '.css')
+    @writeFile params.cmpPath, params.cmpLines
+    @writeFile params.metaPath, params.metaLines
+    @writeFile params.controllerPath, params.controllerLines
+    @writeFile params.helperPath, params.helperLines
+    @writeFile params.cssPath, params.cssLines
+    params.cmpPath
+
 #-----------
 
   writeFile: (filePath, lines) ->
@@ -115,9 +146,14 @@ module.exports =
 #-----------
 
   createSfItem: (sfCreatingDialog, root) ->
-    itemParams = @getSfCreatingItemParams(sfCreatingDialog, root)
-    @writeMeta itemParams
-    @writeSrc itemParams
+    finalPath = null
+    if sfCreatingDialog.itemType in ["Class", "Trigger", "Page", "Component"]
+      itemParams = @getSfCreatingItemParams(sfCreatingDialog, root)
+      @writeMeta itemParams
+      finalPath = @writeSrc itemParams
+    if sfCreatingDialog.itemType in ["Lightning Component"]
+      finalPath = @createLightningComponent(sfCreatingDialog, root)
+    finalPath
 
 #-----------
 

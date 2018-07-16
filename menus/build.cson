@@ -55,6 +55,7 @@
                 { 'label': 'New Apex Trigger', 'command': 'force.com:new-apex-trigger' }
                 { 'label': 'New Visualforce Page', 'command': 'force.com:new-vf-page' }
                 { 'label': 'New Visualforce Component', 'command': 'force.com:new-vf-component' }
+                { 'label': 'New Lightning Component', 'command': 'sf-tools:new-aura-component' }
                 { 'type': 'separator' }
                 { 'label': 'Create Custom Label', 'command': 'force.com:create-custom-label-project' }
             ]
