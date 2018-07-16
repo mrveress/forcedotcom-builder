@@ -3,6 +3,7 @@ fs = require 'fs'
 qs = require 'querystring'
 pathModule = require 'path'
 remote = require "remote"
+{shell} = require('electron')
 
 utils = require './utils'
 BuildView = require './build-view'
@@ -50,6 +51,9 @@ module.exports =
 
     atom.commands.add 'atom-workspace', "sf-tools:git-order", => @getProjectPath("editor", @gitOrder, null)
     atom.commands.add 'atom-workspace', "sf-tools:git-order-treeview", => @getProjectPath("treeview-multiple", @gitOrderTreeView, null)
+    atom.commands.add 'atom-workspace', "sf-tools:copy-credentials", => @getProjectPath("treeview-project", @copyCredentials, null)
+    atom.commands.add 'atom-workspace', "sf-tools:open-in-browser", => @getProjectPath("treeview-project", @openInBrowser, null)
+
 
   getProjectPath: (projectSelector, callback, callbackArgs) ->
     root = null
@@ -370,3 +374,27 @@ module.exports =
       projectPath = utils.getSrcPath(@root)
       paths = treeViewInstance.selectedPaths()
       GitOrder.order(paths);
+
+  copyCredentials: () ->
+    jsonConfigPath = @root + utils.getPlatformPath('/build/sf-tools.properties.json')
+    if fs.existsSync jsonConfigPath
+      sfToolsConfig = JSON.parse(fs.readFileSync(jsonConfigPath, 'utf8'));
+      creds = null
+      for cred in sfToolsConfig.credentials
+        if cred.active
+          creds = cred
+          break
+      credsLine = creds.serverurl + '?un=' + creds.username + '&pw=' + creds.password
+      atom.clipboard.write(credsLine);
+
+  openInBrowser: () ->
+    jsonConfigPath = @root + utils.getPlatformPath('/build/sf-tools.properties.json')
+    if fs.existsSync jsonConfigPath
+      sfToolsConfig = JSON.parse(fs.readFileSync(jsonConfigPath, 'utf8'));
+      creds = null
+      for cred in sfToolsConfig.credentials
+        if cred.active
+          creds = cred
+          break
+      credsLine = creds.serverurl + '?un=' + creds.username + '&pw=' + creds.password
+      shell.openExternal(credsLine);

@@ -59,6 +59,14 @@
                 { 'label': 'Create Custom Label', 'command': 'force.com:create-custom-label-project' }
             ]
         }
+        {
+            'label': 'SF Tools: Creds to Clipboard'
+            'command': 'sf-tools:copy-credentials'
+        }
+        {
+            'label': 'SF Tools: Open in Browser'
+            'command': 'sf-tools:open-in-browser'
+        }
         { 'type': 'separator' }
     ]
     'atom-text-editor[data-grammar~="apex"], atom-text-editor[data-grammar~="visualforce"]': [
