@@ -218,6 +218,7 @@ module.exports =
       ,'contentassets' : 'ContentAsset'
       ,'mlDomains' : 'MlDomain'
       ,'bots' : 'Bot'
+      ,'lwc' : 'LightningComponentBundle'
     }
     result = null
     if folderMapping.hasOwnProperty folderName
